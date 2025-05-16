@@ -12,11 +12,18 @@
 <body>
     <div class="container mt-5">
         <h1 class="text-center">{{ title }}</h1>
+
+        {% if error %}
+        <div class="alert alert-danger text-center" role="alert">
+            {{ error }}
+        </div>
+        {% endif %}
+
         <form method="POST">
             {% for player in players %}
             <div class="mb-3">
-                <label for="score_{{ player }}" class="form-label">{{ player }}'s score:</label>
-                <input type="number" name="score_{{ player }}" id="score_{{ player }}" class="form-control" required>
+                <label for="score_{{ player.username }}" class="form-label">{{ player.username }}'s score:</label>
+                <input type="number" name="score_{{ player.username }}" id="score_{{ player.username }}" class="form-control" required>
             </div>
             {% endfor %}
             <button type="submit" class="btn btn-primary">Submit Scores</button>
